@@ -4,14 +4,17 @@ const {response} = require('../utils');
 
 
 const getMovies = async (req, res) => {
-    
-        const movies = await moviesService.getallMovies();
+    const {name} = req.query;
+        const movies = name 
+        ? await moviesService.getMovieByName(name)
+        : await moviesService.getallMovies();
         //res.status(200).json(movies);          
         response(res, 200, movies);
 };
 
 const getMovieById = async (req, res) =>{
     const { id } = req.params;
+    
     
         const movie = await moviesService.getMovieById(id);
        // res.status(200).json(movie);

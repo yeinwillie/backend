@@ -24,11 +24,17 @@ const getallMovies = async () => {
 const getMovieById = async (id) => {
     const movie = data.find((e) => (e.id) == id);
    // if (!movie) throw Error ('Invalid Id');                  // EXPRESS MANEJA EL ERROR Y LO ASIGNA COMO 500 Y ES UN ERROR DEL CLIENTE
-   if (!movie) throw new ClientError('Invalid ID');   // SE MANEJA EL ERROR CON LA FUNCION CLIENTeRROR Y SE ASIGNA COMO 400
+   if (!movie) throw new ClientError('Invalid ID',400);   // SE MANEJA EL ERROR CON LA FUNCION CLIENTeRROR Y SE ASIGNA COMO 400
     return movie;
+}
+
+const getMovieByName = async (name) => {
+    const movies = data.filter((e) => e.title == name);
+    return movies;
 }
 
 module.exports = {
     getallMovies,
     getMovieById,
+    getMovieByName,
 }
